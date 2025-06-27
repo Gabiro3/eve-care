@@ -48,7 +48,7 @@ export default function Home() {
                   size="lg"
                   className="border-emerald-700/30 hover:bg-muted/80"
                 >
-                  <Link href="/specialists">Find Specialists</Link>
+                  <Link href="/doctors">Find Doctors</Link>
                 </Button>
               </div>
             </div>
