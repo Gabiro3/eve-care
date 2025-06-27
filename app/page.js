@@ -19,15 +19,18 @@ export default function Home() {
                 variant="outline"
                 className="bg-emerald-900/30 border-emerald-700/30 px-4 py-2 text-emerald-400 text-sm font-medium"
               >
-                Healthcare made simple
+                Telehealth for Reproductive Wellness
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Connect with doctors <br />
-                <span className="gradient-title">anytime, anywhere</span>
+                Connect with gynecologists <br />
+                <span className="gradient-title">
+                  anytime, anywhere in Africa
+                </span>
               </h1>
               <p className="text-muted-foreground text-lg md:text-xl max-w-md">
-                Book appointments, consult via video, and manage your healthcare
-                journey all in one secure platform.
+                Empowering African girls, women, and men with access to trusted
+                reproductive health specialists for consultations, education,
+                and personalized care.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -45,7 +48,7 @@ export default function Home() {
                   size="lg"
                   className="border-emerald-700/30 hover:bg-muted/80"
                 >
-                  <Link href="/doctors">Find Doctors</Link>
+                  <Link href="/specialists">Find Specialists</Link>
                 </Button>
               </div>
             </div>
@@ -53,7 +56,7 @@ export default function Home() {
             <div className="relative h-[400px] lg:h-[500px] rounded-xl overflow-hidden">
               <Image
                 src="/banner2.png"
-                alt="Doctor consultation"
+                alt="Online reproductive health consultation"
                 fill
                 priority
                 className="object-cover md:pt-14 rounded-xl"
@@ -71,7 +74,8 @@ export default function Home() {
               How It Works
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Our platform makes healthcare accessible with just a few clicks
+              Learn, consult, and get personalized support on reproductive
+              health from specialists who understand your needs.
             </p>
           </div>
 
@@ -98,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section with green medical styling */}
+      {/* Pricing Section */}
       <section id="pricing" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -106,22 +110,22 @@ export default function Home() {
               variant="outline"
               className="bg-emerald-900/30 border-emerald-700/30 px-4 py-1 text-emerald-400 text-sm font-medium mb-4"
             >
-              Affordable Healthcare
+              Affordable Reproductive Care
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Consultation Packages
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Choose the perfect consultation package that fits your healthcare
-              needs
+              Choose a consultation package tailored to your reproductive health
+              needs and wellness goals.
             </p>
           </div>
 
           <div className="mx-auto">
-            {/* Clerk Pricing Table */}
-            <Pricing />
+            {/* Pricing component can be customized or reused */}
+            {/* <Pricing /> */}
 
-            {/* Description */}
+            {/* Credit system description */}
             <Card className="mt-12 bg-muted/20 border-emerald-900/30">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-white flex items-center">
@@ -162,7 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials with green medical accents */}
+      {/* Testimonials */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -176,7 +180,8 @@ export default function Home() {
               What Our Users Say
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Hear from patients and doctors who use our platform
+              Hear from African patients and reproductive health specialists
+              who trust our platform.
             </p>
           </div>
 
@@ -212,19 +217,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section with green medical styling */}
+      {/* CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-to-r from-emerald-900/30 to-emerald-950/20 border-emerald-800/20">
             <CardContent className="p-8 md:p-12 lg:p-16 relative overflow-hidden">
               <div className="max-w-2xl relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  Ready to take control of your healthcare?
+                  Ready to take control of your reproductive health?
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Join thousands of users who have simplified their healthcare
-                  journey with our platform. Get started today and experience
-                  healthcare the way it should be.
+                  Join thousands of Africans accessing trusted gynecologists and
+                  reproductive health specialists from the comfort of your home.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -245,7 +249,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Decorative healthcare elements */}
+              {/* Decorative elements */}
               <div className="absolute right-0 top-0 w-[300px] h-[300px] bg-emerald-800/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
               <div className="absolute left-0 bottom-0 w-[200px] h-[200px] bg-emerald-700/10 rounded-full blur-3xl -ml-10 -mb-10"></div>
             </CardContent>

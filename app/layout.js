@@ -5,12 +5,17 @@ import { Toaster } from "sonner";
 import Header from "@/components/header";
 import { dark } from "@clerk/themes";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PublicFooter } from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Doctors Appointment App",
-  description: "Connect with doctors anytime, anywhere",
+  title: "Eve Care - Improving Reproductive Health and Wellness in Africa",
+  description:
+    "Eve Care connects you with trusted gynecologists and reproductive health specialists anytime, anywhere in Africa. Empower your wellness journey today.",
+  icons: {
+    icon: "/favicon.png", // path to your favicon file in public folder
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -35,11 +40,7 @@ export default function RootLayout({ children }) {
             <main className="min-h-screen">{children}</main>
             <Toaster richColors />
 
-            <footer className="bg-muted/50 py-12">
-              <div className="container mx-auto px-4 text-center text-gray-200">
-                <p>Made with 💗 by RoadsideCoder</p>
-              </div>
-            </footer>
+            <PublicFooter />
           </ThemeProvider>
         </body>
       </html>
