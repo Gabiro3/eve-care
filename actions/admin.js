@@ -92,13 +92,21 @@ export async function updateDoctorStatus(formData) {
   }
 
   try {
-    await db.user.update({
-      where: {
-        id: doctorId,
-      },
+    const updatedUser = await db.user.update({
+      where: { id: doctorId },
       data: {
         verificationStatus: status,
       },
+    });
+    
+    await fetch("/api/email/doctor-status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: updatedUser.email,
+        name: updatedUser.name || "",
+        status,
+      }),
     });
 
     revalidatePath("/admin");

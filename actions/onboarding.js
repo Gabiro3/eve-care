@@ -10,55 +10,55 @@ import { revalidatePath } from "next/cache";
 export async function setUserRole(formData) {
   const { userId } = await auth();
 
-  if (!userId) {
-    throw new Error("Unauthorized");
-  }
+  if (!userId) throw new Error("Unauthorized");
 
-  // Find user in our database
   const user = await db.user.findUnique({
     where: { clerkUserId: userId },
   });
 
-  if (!user) throw new Error("User not found in database");
+  if (!user) throw new Error("User not found");
 
   const role = formData.get("role");
 
   if (!role || !["PATIENT", "DOCTOR"].includes(role)) {
-    throw new Error("Invalid role selection");
+    throw new Error("Invalid role");
   }
 
   try {
-    // For patient role - simple update
     if (role === "PATIENT") {
       await db.user.update({
-        where: {
-          clerkUserId: userId,
-        },
-        data: {
-          role: "PATIENT",
-        },
+        where: { clerkUserId: userId },
+        data: { role: "PATIENT" },
       });
+
+      // Call your email sending API route internally
+      const emailRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/email/welcome`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: user.email, name: user.name, role }),
+      });
+
+      if (!emailRes.ok) {
+        console.error("Failed to send welcome email to patient");
+        // Optionally handle email failure (continue or throw)
+      }
 
       revalidatePath("/");
       return { success: true, redirect: "/doctors" };
     }
 
-    // For doctor role - need additional information
     if (role === "DOCTOR") {
       const specialty = formData.get("specialty");
       const experience = parseInt(formData.get("experience"), 10);
       const credentialUrl = formData.get("credentialUrl");
       const description = formData.get("description");
 
-      // Validate inputs
       if (!specialty || !experience || !credentialUrl || !description) {
         throw new Error("All fields are required");
       }
 
       await db.user.update({
-        where: {
-          clerkUserId: userId,
-        },
+        where: { clerkUserId: userId },
         data: {
           role: "DOCTOR",
           specialty,
@@ -69,6 +69,17 @@ export async function setUserRole(formData) {
         },
       });
 
+      // Send doctor welcome email
+      const emailRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/email/welcome`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: user.email, name: user.name, role }),
+      });
+
+      if (!emailRes.ok) {
+        console.error("Failed to send welcome email to doctor");
+      }
+
       revalidatePath("/");
       return { success: true, redirect: "/doctor/verification" };
     }
@@ -77,6 +88,7 @@ export async function setUserRole(formData) {
     throw new Error(`Failed to update user profile: ${error.message}`);
   }
 }
+
 
 /**
  * Gets the current user's complete profile information
